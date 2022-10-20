@@ -14,11 +14,6 @@ use Cviebrock\EloquentSluggable\Services\SlugService;
 
 class PostController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
 
@@ -43,11 +38,6 @@ class PostController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         $users = user::all(['id', 'name']);
@@ -59,12 +49,6 @@ class PostController extends Controller
         ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(StoreArticleRequest $request)
     {
 
@@ -85,12 +69,6 @@ class PostController extends Controller
         return redirect()->route('author.posts.index')->with('success', 'New Article has been created!');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($slug)
     {
         $articles = Article::where('slug', $slug)->first();
@@ -99,12 +77,6 @@ class PostController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         $article = Article::findOrFail($id);
@@ -117,18 +89,8 @@ class PostController extends Controller
         ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(UpdateArticleRequest $request, $id)
     {
-        // dd($request->all());
-        // Storage::delete('public/article/' . $request->oldImage);
-        // dd('');
         $article = Article::findOrFail($id);
         $article->user_id = $request->user_id;
         $article->category_id = $request->category_id;
@@ -142,10 +104,6 @@ class PostController extends Controller
         if ($request->hasFile('image')) {
             if ($request->oldImage) {
                 Storage::disk('local')->delete('public/article/' . $request->oldImage);
-                // $directory = Storage::path('public/article/ ' .  $request->oldImage);
-                // $files = Storage::files($directory);
-                // dd($directory);
-                // Storage::delete($directory);
             }
             $imageName = time() . '.' . $request->image->getClientOriginalExtension();
             Storage::disk('local')->putFileAs('public/article', $request->file('image'), $imageName);
@@ -157,12 +115,6 @@ class PostController extends Controller
         return redirect()->route('author.posts.index')->with('success', 'New Article has been Updated!');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         $article = Article::findOrFail($id);

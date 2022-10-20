@@ -14,11 +14,11 @@
       <div class="card mb-3">
         <img src="{{ $articles[0]->image == null ? url('images/programming.jpg') : Storage::url( ('article/'. $articles[0]->image) ) }}" class="card-img-top" height="500px">
         <div class="card-body" style="text-align: center">
-          <h5 class="card-title fs-4">Title: <a href="/article/{{ $articles[0]->slug }}" class="text-decoration-none">{{ $articles[0]->title }}</a></h5>
+          <h5 class="card-title fs-4">Title: <a href="/articles/{{ $articles[0]->slug }}" class="text-decoration-none">{{ $articles[0]->title }}</a></h5>
           <small class="card-title fs-6">Created By: <a href="{{ url('articles?user='. $articles[0]->user->username) }}"> {{ $articles[0]->user->username }}</a> in: <a href="{{ url('articles?category=' . $articles[0]->category->slug ) }}">{{ $articles[0]->category->name }}</a></small>
           <p class="card-text"><h4>{!! Str::limit($articles[0]->description, '150') !!}</h4></p>
           <p class="card-text"><small class="text-muted">Last created {{ $articles[0]->created_at->diffForHumans() }}, By: {{ $articles[0]->user->username }}</small></p>
-          <a href="{{ url('article/' . $articles[0]->slug) }}" class="btn btn-outline-primary">Read More...</a>
+          <a href="{{ url('articles/' . $articles[0]->slug) }}" class="btn btn-outline-primary">Read More...</a>
         </div>
       </div>
 
@@ -31,7 +31,7 @@
 
             <div class="col-md-6 mt-3">
               <p><h4 class="">{!! Str::limit($article->description, '150') !!}</h4></p>
-              <a href="/article/{{ $article->slug }}" class="btn btn-outline-primary mb-2">Read More...</a>
+              <a href="{{ url('articles/' . $article->slug)}}" class="btn btn-outline-primary mb-2">Read More...</a>
               <div class="container px-0 mt-4">
               <small class="text-muted">Created By: <a href="{{ url('articles?user='. $article->user->username) }}"> {{ $article->user->username }}</a>, Category: <a href="{{ url('articles?category=' . $article->category->slug ) }}">{{ $article->category->name }}</a></small>
               </div>

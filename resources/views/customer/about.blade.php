@@ -8,7 +8,7 @@
             <div class="col-md-4 mt-5">
                 <a href="{{ url('articles?user='. $user->username) }}">
                 <div class="card bg-dark text-white">
-                    <img src="{{ $user->image == Null ? asset('images/programming.jpg') : Storage::url('profile/' . $user->image) }}" class="card-img" alt="{{ $user->name }}" height="300px">
+                    <img src="{{ $user->image == null ? asset('images/programming.jpg') : Storage::url('profile/' . $user->image) }}" class="card-img" alt="{{ $user->name }}" height="300px">
                     <div class="card-img-overlay d-flex align-items-center p-0">
                       <h5 class="card-title text-center flex-fill py-4 fs-4" style="background-color: rgba(0, 0, 0, 0.7)">{{ $user->username }}</h5>
                     </div>

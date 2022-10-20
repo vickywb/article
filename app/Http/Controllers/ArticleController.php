@@ -20,7 +20,6 @@ class ArticleController extends Controller
      */
     public function index()
     {
-
         $post = '';
         if (request('category')) {
             $category = Category::firstWhere('slug', request('category'));
@@ -103,9 +102,9 @@ class ArticleController extends Controller
      */
     public function show($slug)
     {
-        $articles = Article::where('slug', $slug)->first();
+        $article = Article::where('slug', $slug)->first();
         return view('customer.showarticle', [
-            'articles' => $articles,
+            'article' => $article,
         ]);
     }
 

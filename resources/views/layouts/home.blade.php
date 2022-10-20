@@ -32,7 +32,7 @@
   </head>
   <body>
     <div id="app">
-      <nav class="navbar navbar-expand-lg fixed-top navbar-light bg-white">
+      <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
               <div class="container-fluid">
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -41,13 +41,13 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left links -->
                     <div class="container-md">
-                        <a class="navbar-brand" href="/">Article</a>
+                        <a class="navbar-brand" href="/" style=""><img src="{{ url('images/profile.jpg') }}" alt="" width="25px" height="25px"><small>Article</small></a>
                     </div>
                     <ul class="navbar-nav mr-auto">
-                          <li><a href="/" class="nav-link">Home</a></li>
-                          <li><a href="/about" class="nav-link">About</a></li>
-                          <li><a href="/articles" class="nav-link">Articles</a></li>
-                          <li><a href="/categories" class="nav-link">Categories</a></li>
+                          <li><a href="/" class="nav-link {{ Request::is('/*') ? 'active' : '' }}">Home</a></li>
+                          <li><a href="{{ route('about.index') }}" class="nav-link {{ Request::is('about*') ? 'active' : '' }}">About</a></li>
+                          <li><a href="{{ route('article.index') }}" class="nav-link {{ Request::is('articles*') ? 'active' : '' }}">Articles</a></li>
+                          <li><a href="{{ route('article.category.index') }}" class="nav-link {{ Request::is('categories*') ? 'active' : '' }}">Categories</a></li>
                           <!-- Navbar dropdown -->
                           <ul class="navbar-nav mr-auto">
                             <!-- Authentication Links -->
@@ -89,12 +89,12 @@
             <!-- Background image -->
             <div
               class="p-5 text-center bg-image"
-              style="background-image: url('https://mdbcdn.b-cdn.net/img/new/slides/041.jpg'); height: 400px;" >
-              <div class="mask" style="background-color: rgba(0, 0, 0, 0.6);">
+              style="height: 400px;" >
+              <div class="mask">
                 <div class="d-flex justify-content-center align-items-center h-100">
                   <div class="text-white">
-                    <h1 class="mb-2">Article</h1>
-                    <small class="mb-3 fs-5">Find some Article Here !!!</small>
+                    <h1 class="mb-2" style="font-family: cursive; color:black;"><b>Article</b></h1>
+                    <small class="mb-3 fs-5" style="font-family: cursive; color:black;"><b>Find some new in here!!</b></small>
                       <form action="/">
                         @if (request('category'))
                             <input type="hidden" name="category" value="{{ request('category') }}">
@@ -103,7 +103,7 @@
                         <input type="hidden" name="user" value="{{ request('user') }}">
                        @endif
                         <div class="input-group">
-                          <button class="btn btn-primary" type="submit"><i class="fas fa-search text-white" aria-hidden="true" style="height:15px"></i></button>
+                          <button class="btn btn-dark" type="submit"><i class="fas fa-search text-white" aria-hidden="true" style="height:15px"></i></button>
                         <input class="form-control" type="text" name="search" value="{{ request('search') }}" placeholder="Search.." aria-label="Search" style="width:400px; height: 40px">
                       </div>
                     </form>

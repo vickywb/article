@@ -12,11 +12,11 @@
 
           <div class="col-md-6 mt-3">
             <div class="card-header">
-              <h3 class=><a href="/author/articles/{{ $article->slug }}">{{ $article->title }}</a></h3>
+              <h3 class=><a href="{{ route('article.show') }}}}">{{ $article->title }}</a></h3>
             </div>
             <small class="text-muted">Created By: <a href="/author/{{ $article->user->username }}"> {{ $article->user->name }}</a>, Category: <a href="/author/categories/{{ $article->category->slug }}">{{ $article->category->name }}</a></small>
             <p><h4>{{ Str::limit($article->description, '100') }}</h4></p>
-            <a href="/author/articles/{{ $article->slug }}">Read More...</a>
+            <a href="{{ route('article.show') }}">Read More...</a>
           </div>
 
           <div class="card-footer mt-2">
